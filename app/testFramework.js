@@ -12,5 +12,11 @@ test.HasContent = function(webpage, result, answer="FALSE") {
 
 };
 
-console.log(document.URL)
-console.log(document.body)
+// console.log(document.URL)
+// console.log(document.getElementsByTagName('body'))
+
+// console.log(document.getElementsByTagName("body").innerText)
+
+var body = document.getElementsByTagName("body");
+var b = body["0"].innerText
+console.log(b)
