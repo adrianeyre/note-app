@@ -1,6 +1,5 @@
 'use strict';
 
-function Note(description, id) {
+function Note(description) {
   this.description = description;
-  this.id = id;
 }
