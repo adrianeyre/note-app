@@ -1,22 +1,21 @@
 function test(){}
 
 test.Equals = function(passFunction, result, answer="expected " + passFunction + " to equal " + result) {
-  if (passFunction===result){return true}else{return answer};
+  if (passFunction===result){return true}else{return answer}
 };
 
 test.NotEquals = function(passFunction, result, answer="expected " + passFunction + " not to equal " + result) {
-  if (passFunction!==result){return true}else{return answer};
+  if (passFunction!==result){return true}else{return answer}
 };
 
-test.HasContent = function(webpage, result, answer="FALSE") {
-
+test.GreaterThan = function(passFunction, result, answer="expected " + passFunction + " to be greater than " + result) {
+  if (passFunction > result){return true}else{return answer}
 };
 
-// console.log(document.URL)
-// console.log(document.getElementsByTagName('body'))
+test.LessThan = function(passFunction, result, answer="expected " + passFunction + " to be less than " + result) {
+  if (passFunction < result){return true}else{return answer}
+};
 
-// console.log(document.getElementsByTagName("body").innerText)
-
-var body = document.getElementsByTagName("body");
-var b = body["0"].innerText
-console.log(b)
+test.Contains = function(passFunction, result, answer="expected " + passFunction + " to contain " + result) {
+  if (passFunction.includes(result)){return true}else{return answer}
+};
