@@ -1,2 +1,2 @@
-console.log(Equals(returnTrue(),"HELLO"))
-console.log(NotEquals(returnTrue(),4))
+console.log(test.Equals(returnTrue(),"HELLO"))
+console.log(test.NotEquals(returnTrue(),4))
