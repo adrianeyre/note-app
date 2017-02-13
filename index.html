@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Notes</title>
     <link rel="stylesheet" href="public/css/style.css">
     <script src="src/interface.js" defer></script>
     <script src="src/list.js"></script>
     <script src="src/note.js"></script>
-  </head>
+</head>
 
-  <body>
+<body>
     <h1>Hello, welcome to notes</h1>
     <div id="wrapper">
-      <section id="newnote">
-          <h2>New Note</h2>
-          <textarea id="new-note-content"></textarea>
-          <div id="addnote">
-            Add note <!-- This should respond on click and add content to notes -->
-          </div>
-      </section>
+        <section id="newnote">
+            <h2>New Note</h2>
+            <textarea id="new-note-content"></textarea>
+            <div id="addnote">
+                Add note
+                <!-- This should respond on click and add content to notes -->
+            </div>
+        </section>
+        <h3>Current Note</h3>
+        <section id="currentnote">
+        </section>
+        <h3>Notes List</h3>
+        <section id="notelist">
+            <ul id="notes">
+            </ul>
+        </section>
+    </div>
+</body>
+<footer>
+</footer>
 
-      <h3>Notes List</h3>
-      <section id="notelist">
-        <ul id="notes">
-        </ul>
-      </section>
-  </div>
-  </body>
-  <footer>
-  </footer>
 </html>
