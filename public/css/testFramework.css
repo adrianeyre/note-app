@@ -1,0 +1,11 @@
+body {
+  font-family: Sans-serif;
+}
+
+#correct {
+  color: green;
+}
+
+#incorrect {
+  color: red;
+}
