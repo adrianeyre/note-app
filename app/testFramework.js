@@ -23,14 +23,19 @@ test.Contains = function(passFunction, result, answer="expected " + passFunction
 test.HasContent = function(website, result){
   // document.write("<frameset>")
   // document.write("<frame id='iframe01' src='src/test.htm'>")
-  document.write("<iframe id='iframe01' height='0' width='0' src='src/test.htm'></iframe>")
+  document.write("<iframe id='iframe01' height='0' width='0' src='src/test.htm'>")
+  var content = document.getElementById('iframe01')
+  console.log(content.contentDocument.body.innerHTML)
+  document.write("</iframe>")
   // console.log(document.getElementById('iframe01'))
   // var content = document.getElementById('iframe01')
-  var content = document.getElementById('iframe01')
+  // var x = document.getElementById("iframe01").src;
+  // document.getElementById("demo").innerHTML = x;
+  // var content = document.getElementById('iframe01')
   // document.write("</frameset>")
   // console.log(content)
   // content = String(content)
-  console.log(content)
+
   // document.write("IM HERE")
   if (content === (result)){return true}else{return "WRONG"}
 }
