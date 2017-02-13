@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Current Note</title>
+    <link rel="stylesheet" href="public/css/style.css">
+  </head>
+  <body>
+    <h1>Hello, welcome to notes</h1>
+    <div id="wrapper">
+      <h3>Current Note</h3>
+      <section id="currentnote"> <!-- This should be populated when one of list items above is clicked -->
+        <p id="selectednote"> </p>
+        <script>
+          var id = parseINT(window.location.search) + 1;
+          var pagetext = list.notes[id];
+          document.getElementById("selected").innerHTML = pagetext;
+        </script>
+      </section>
+  </div>
+  </body>
+  <footer>
+  </footer>
+</html>
