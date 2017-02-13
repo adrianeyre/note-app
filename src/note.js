@@ -1,5 +1,5 @@
 'use strict';
 
-function Note(description) {
-  this.description = description;
+function Note(content) {
+  this.content = content;
 }
