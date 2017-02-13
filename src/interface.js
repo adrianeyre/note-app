@@ -9,6 +9,6 @@ document.getElementById('addnote').addEventListener('click', function(event) {
 function updateNotes() {
     var index = (list.notes.length - 1);
     var noteId = "<li id=note-" + index + ">";
-    var content = noteId + "<a href='URL-GOES-HERE'/>" + list.notes[index].content+ "</li>";
+    var content = noteId + "<a href='URL-GOES-HERE'/>" + list.notes[index].short() + "</li>";
     document.getElementById('notes').innerHTML += content;
 }
