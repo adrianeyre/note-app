@@ -34,9 +34,10 @@ this.it = function(title, passFunction){
 };
 
 this.describe = function(title, passFunction) {
-  document.write(title);
+  counter = (typeof counter != 'undefined') ? counter : new Counter()
+  document.write("<b>"+title+"</b>");
   passFunction();
-  document.write("<script>document.getElementById('p1').innerHTML = 'Pass = "+counter.pass+" Fail = "+counter.fail+"'</script>");
+  document.write("<script>document.getElementById('testResults').innerHTML = 'Pass = "+counter.pass+" Fail = "+counter.fail+"'</script>");
 };
 
 function Counter() {
@@ -44,6 +45,5 @@ function Counter() {
   this.fail = 0;
 }
 
-var counter = new Counter();
 
-document.write("<p id='p1'>Pass = 0 Fail = 0</p>");
+document.write("<div id='testResults'>Pass = 0 Fail = 0</div>");
