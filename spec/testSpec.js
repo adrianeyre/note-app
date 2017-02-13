@@ -3,14 +3,32 @@
 // console.log(test.GreaterThan(greaterThan(), 6));
 // console.log(test.Contains(array(),"bean"));
 
-it('returns HELLO', function(){
-  return test.Equals(returnTrue(),"HELLO");
+describe("Test suite", function() {
+
+  it('returns HELLO', function(){
+    return test.Equals(returnTrue(),"HELLO");
+  });
+  
+  it('returns 1', function(){
+    return test.Equals(returnTrue(),1);
+  });
+  
+  it('array contains element bean', function(){
+    return test.Contains(array(),"bean");
+  });
 });
 
-it('returns 1', function(){
-  return test.Equals(returnTrue(),1);
-});
+describe("Test suite 2", function() {
 
-it('array contains element bean', function(){
-  return test.Contains(array(),"bean");
+  it('returns HELLO', function(){
+    return test.Equals(returnTrue(),"HELLO");
+  });
+  
+  it('returns 1', function(){
+    return test.Equals(returnTrue(),1);
+  });
+  
+  it('array contains element bean', function(){
+    return test.Contains(array(),"bean");
+  });
 });
