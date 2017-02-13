@@ -31,4 +31,8 @@ describe("Test suite 2", function() {
   it('array contains element bean', function(){
     return test.Contains(array(),"bean");
   });
+
+  it('checks website', function(){
+    return test.HasContent("test.htm", "THE");
+  });
 });

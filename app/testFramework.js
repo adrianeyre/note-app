@@ -20,6 +20,21 @@ test.Contains = function(passFunction, result, answer="expected " + passFunction
   if (passFunction.includes(result)){return true;}else{return answer;}
 };
 
+test.HasContent = function(website, result){
+  // document.write("<frameset>")
+  // document.write("<frame id='iframe01' src='src/test.htm'>")
+  document.write("<iframe id='iframe01' height='0' width='0' src='src/test.htm'></iframe>")
+  // console.log(document.getElementById('iframe01'))
+  // var content = document.getElementById('iframe01')
+  var content = document.getElementById('iframe01')
+  // document.write("</frameset>")
+  // console.log(content)
+  // content = String(content)
+  console.log(content)
+  // document.write("IM HERE")
+  if (content === (result)){return true}else{return "WRONG"}
+}
+
 test.output = function(title, result) {
   var css = "";
   if (result!==true){css="in"; counter.fail++;}else{counter.pass++;}
@@ -48,3 +63,11 @@ function Counter() {
   this.pass = 0;
   this.fail = 0;
 }
+
+// document.write("<frameset>")
+// document.write("<iframe id='iframe01' height='0' width='0' src='src/test.htm'></iframe>")
+// console.log(document.getElementById('iframe01'))
+// var content = document.getElementById('iframe01')
+// document.write("</frameset>")
+// document.write(content)
+// document.write("IM HERE")
