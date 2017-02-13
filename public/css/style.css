@@ -53,3 +53,14 @@ h3 {
   margin-bottom: 0.5em;
   border-radius: 5px
 }
+
+#currentnote {
+  margin-bottom: 2em;
+  border: 1px solid gray;
+  border-radius: 5px;
+  height: auto;
+  width: 80%;
+  padding: 1em;
+  max-width: 90%;
+  position: relative;
+}
