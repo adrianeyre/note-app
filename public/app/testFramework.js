@@ -26,7 +26,7 @@
   }
 
   function HasContent(website, result, answer = "expected website to contain: "+result) {
-    document.write("<div id='"+(tests)+"'>&nbsp&nbsp&nbsp&nbspWaiting Results!"+(tests)+"</div>")
+    document.write("<div id='"+toString(tests)+"'>&nbsp&nbsp&nbsp&nbspWaiting Results!"+(tests)+"</div>")
     document.write("<iframe id='iframe01' height='0' width='0' src=src/testFrameworkSpec/" + website + "></iframe>");
     document.getElementById('iframe01').onload = function() {
         var content = document.getElementById('iframe01').contentWindow.document.getElementById('testing').innerHTML
@@ -53,7 +53,8 @@
     if (typeof(result) === 'undefined') {
       var checkExist = setInterval(function() {
         clearInterval(checkExist);
-        document.getElementById(tests).innerHTML = output(title, myresult)
+        document.getElementById(toString(tests)).innerHTML = output(title, myresult);
+        document.getElementById('testResults').innerHTML = "Pass = " + pass + " Fail = " + fail
       }, 100);
     } else {
       document.write(output(title, result));
