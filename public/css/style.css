@@ -12,7 +12,8 @@ h3 {
 }
 
 #wrapper {
-  width: 80%;
+  width: 800px;
+  max-width: 90%;
   margin: auto;
   background-color: white;
   border: 1px solid gray;
@@ -52,4 +53,24 @@ h3 {
   width: 80%;
   margin-bottom: 0.5em;
   border-radius: 5px
+}
+
+#current-note-container, #notes-container {
+  display: none;
+  opacity: 0;
+}
+
+#currentnote {
+  margin-bottom: 2em;
+  border: 1px solid gray;
+  border-radius: 5px;
+  height: auto;
+  width: 80%;
+  padding: 1em;
+  max-width: 90%;
+  position: relative;
+}
+
+.show {
+  display: block!important;
 }
