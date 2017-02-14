@@ -1,5 +1,8 @@
 
 (function(exports){
+  var pass = 0;
+  var fail = 0;
+
 
   function Equals(passFunction, result, answer="expected " + passFunction + " to equal " + result) {
     if (passFunction===result){return true;}else{return answer;}
@@ -36,7 +39,6 @@
 
   function output (title, result) {
     var css = "";
-    var fail;
     if (result!==true){css="in"; fail++;}else{pass++;}
     var output = "<div id='"+css+"correct'>&nbsp&nbsp&nbsp&nbsp"+title+": "+result+"</div>";
     return output;
@@ -49,8 +51,6 @@
 
   function initiate(){
     document.write("<div id='testResults'>Pass = 0 Fail = 0</div>");
-    var pass = 0;
-    var fail = 0;
   }
 
   function describe (title, passFunction) {
@@ -58,11 +58,13 @@
     passFunction();
     displayResult();
   }
-  initiate()
+
 
   function displayResult(){
     document.write("<script>document.getElementById('testResults').innerHTML = 'Pass = "+ pass +" Fail = "+ fail +"'</script>");
   }
+
+  initiate();
 
   exports.assert = {}
   exports.assert.Equals = Equals;
