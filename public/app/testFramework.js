@@ -2,6 +2,7 @@
 (function(exports){
   var pass = 0;
   var fail = 0;
+  var myresult = ""
 
 
   function Equals(passFunction, result, answer="expected " + passFunction + " to equal " + result) {
@@ -25,13 +26,20 @@
   }
 
   function HasContent(website, result, answer = "WRONG") {
+    // document.write("<div id='temp'> TRUE </div>")
     document.write("<iframe id='iframe01' height='100' width='100' src=src/testFrameworkSpec/" + website + "></iframe>");
 
     document.getElementById('iframe01').onload = function() {
         var content = document.getElementById('iframe01').contentWindow.document.getElementById('testing').innerHTML
+        // document.write("<div id='temp'> TRUE </div>")
         if (content.includes(result)) {
+            // console.log("CORRECT")
+            myresult = true;
+            // temp()
             return true;
         } else {
+            // console.log("INCORRRECT")
+            myresult = answer;
             return answer;
         }
     }
@@ -46,6 +54,21 @@
 
   function it(title, passFunction){
     var result = passFunction();
+    // console.log(result)
+    if (typeof(result) === 'undefined') {
+      // console.log("HERE")
+      var checkExist = setInterval(function() {
+        //  if (typeof(result) !== 'undefined') {
+            // console.log("Exists!");
+            // // result = passFunction();
+            // console.log(title)
+            // console.log(myresult)
+            clearInterval(checkExist);
+            document.write(output(title, myresult));
+        //  }
+      }, 10000);
+    }
+
     document.write(output(title, result));
   }
 
