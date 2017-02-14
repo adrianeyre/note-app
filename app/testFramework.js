@@ -1,69 +1,73 @@
-function test(){}
 
-test.Equals = function(passFunction, result, answer="expected " + passFunction + " to equal " + result) {
-  if (passFunction===result){return true;}else{return answer;}
-};
+(function(exports){
 
-test.NotEquals = function(passFunction, result, answer="expected " + passFunction + " not to equal " + result) {
-  if (passFunction!==result){return true;}else{return answer;}
-};
 
-test.GreaterThan = function(passFunction, result, answer="expected " + passFunction + " to be greater than " + result) {
-  if (passFunction > result){return true;}else{return answer;}
-};
+  function Equals(passFunction, result, answer="expected " + passFunction + " to equal " + result) {
+    if (passFunction===result){return true;}else{return answer;}
+  };
 
-test.LessThan = function(passFunction, result, answer="expected " + passFunction + " to be less than " + result) {
-  if (passFunction < result){return true;}else{return answer;}
-};
+  function NotEquals(passFunction, result, answer="expected " + passFunction + " not to equal " + result) {
+    if (passFunction!==result){return true;}else{return answer;}
+  };
 
-test.Contains = function(passFunction, result, answer="expected " + passFunction + " to contain " + result) {
-  if (passFunction.includes(result)){return true;}else{return answer;}
-};
+  function GreaterThan(passFunction, result, answer="expected " + passFunction + " to be greater than " + result) {
+    if (passFunction > result){return true;}else{return answer;}
+  };
 
-test.HasContent = function(website, result, answer="WRONG"){
-  document.write("<iframe id='iframe01' height='100' width='100' src='src/test.htm'>");
-  var content = document.getElementById('iframe01').contentDocument.body;
-  // var content = document.getElementById('iframe01').getElementsByTagName('body');
-  // var arr = Object.keys(content).map(function (key) { return content[key]; });
-  // console.log(content.contentDocument.body.innerHTML);
-  // console.log(content.contentWindow.document.body.innerHTML);
-  // console.log(document.getElementById('iframe01'))
-  // console.log(content.contentDocument.getElementsByTagName('body'))
-  // console.log(content.contentWindow.document.getElementsByTagName('body'))
-  // console.log(content.contentDocument.outterHTML);
-  document.write("</iframe>");
-  // console.log(content.contentWindow.document.body);
-  // document.onload()
-  // document.addEventListener("DOMContentLoaded", function(){  console.log("TEST") }); // Handler when the DOM is fully loaded });
-  // console.log(content);
-  if (content.matches("THE")){return true;}else{return answer;}
-};
+  function LessThan(passFunction, result, answer="expected " + passFunction + " to be less than " + result) {
+    if (passFunction < result){return true;}else{return answer;}
+  };
 
-test.output = function(title, result) {
-  var css = "";
-  if (result!==true){css="in"; counter.fail++;}else{counter.pass++;}
-  var output = "<div id='"+css+"correct'>&nbsp&nbsp&nbsp&nbsp"+title+": "+result+"</div>";
-  return output;
-};
+  function Contains(passFunction, result, answer="expected " + passFunction + " to contain " + result) {
+    if (passFunction.includes(result)){return true;}else{return answer;}
+  };
 
-this.it = function(title, passFunction){
-  var result = passFunction();
-  document.write(test.output(title, result));
-};
+  function HasContent (website, result, answer="WRONG"){
+    document.write("<iframe id='iframe01' height='100' width='100' src='src/test.htm'>");
+    var content = document.getElementById('iframe01').contentDocument.body;
+    document.write("</iframe>");
+    if (content.matches("THE")){return true;}else{return answer;}
+  };
 
-this.describe = function(title, passFunction) {
-  counter = (typeof counter != 'undefined') ? counter : new Counter();
-  document.write("<b>"+title+"</b>");
-  passFunction();
-  this.displayResult();
-};
+  function output (title, result) {
+    var css = "";
+    if (result!==true){css="in"; fail++;}else{pass++;}
+    var output = "<div id='"+css+"correct'>&nbsp&nbsp&nbsp&nbsp"+title+": "+result+"</div>";
+    return output;
+  };
 
-this.displayResult = function(){
-  document.write("<script>document.getElementById('testResults').innerHTML = 'Pass = "+counter.pass+" Fail = "+counter.fail+"'</script>");
-};
+  function it(title, passFunction){
+    var result = passFunction();
+    document.write(output(title, result));
+  };
 
-function Counter() {
-  document.write("<div id='testResults'>Pass = 0 Fail = 0</div>");
-  this.pass = 0;
-  this.fail = 0;
-}
+  function describe (title, passFunction) {
+    console.log("not called")
+    document.write("<b>"+title+"</b>");
+    passFunction();
+    displayResult();
+  };
+
+  function initiate(){
+    document.write("<div id='testResults'>Pass = 0 Fail = 0</div>");
+    var pass = 0;
+    var fail = 0;
+  }
+
+  function displayResult(){
+    document.write("<script>document.getElementById('testResults').innerHTML = 'Pass = "+ pass +" Fail = "+ fail +"'</script>");
+  };
+  initiate()
+
+  exports.assert = {}
+  exports.assert.Equals = Equals;
+  exports.assert.NotEquals = NotEquals;
+  exports.assert.GreaterThan = GreaterThan;
+  exports.assert.LessThan = LessThan;
+  exports.assert.Contains = Contains;
+  exports.assert.HasContent = HasContent;
+
+  exports.it = it
+  exports.describe = describe
+
+})(this)
