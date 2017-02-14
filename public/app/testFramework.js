@@ -1,10 +1,6 @@
 
 (function(exports){
 
-  document.write("<div id='testResults'>Pass = 0 Fail = 0</div>");
-  var pass = 0;
-  var fail = 0;
-
   function Equals(passFunction, result, answer="expected " + passFunction + " to equal " + result) {
     if (passFunction===result){return true;}else{return answer;}
   }
@@ -51,11 +47,18 @@
     document.write(output(title, result));
   }
 
+  function initiate(){
+    document.write("<div id='testResults'>Pass = 0 Fail = 0</div>");
+    var pass = 0;
+    var fail = 0;
+  }
+
   function describe (title, passFunction) {
     document.write("<b>"+title+"</b>");
     passFunction();
     displayResult();
   }
+  initiate()
 
   function displayResult(){
     document.write("<script>document.getElementById('testResults').innerHTML = 'Pass = "+ pass +" Fail = "+ fail +"'</script>");
