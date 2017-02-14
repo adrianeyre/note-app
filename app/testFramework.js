@@ -31,7 +31,7 @@
 
   function output (title, result) {
     var css = "";
-    if (result!==true){css="in"; fail++;}else{pass++;}
+    if (result!==true){css="in"; this.fail++;}else{this.pass++;}
     var output = "<div id='"+css+"correct'>&nbsp&nbsp&nbsp&nbsp"+title+": "+result+"</div>";
     return output;
   };
@@ -50,12 +50,12 @@
 
   function initiate(){
     document.write("<div id='testResults'>Pass = 0 Fail = 0</div>");
-    var pass = 0;
-    var fail = 0;
+    this.pass = 0;
+    this.fail = 0;
   }
 
   function displayResult(){
-    document.write("<script>document.getElementById('testResults').innerHTML = 'Pass = "+ pass +" Fail = "+ fail +"'</script>");
+    document.write("<script>document.getElementById('testResults').innerHTML = 'Pass = "+ this.pass +" Fail = "+ this.fail +"'</script>");
   };
   initiate()
 
