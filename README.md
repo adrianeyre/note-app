@@ -59,7 +59,7 @@ describe("Test suite 1", function() {
 });
 
 ```
-#### running tests
+### running tests
 To see active tests, do the following:
 * Open ```test.html```. This provides an output of all currently active and failing tests.
 
