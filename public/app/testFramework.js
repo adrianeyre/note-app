@@ -27,9 +27,7 @@
 
   function HasContent(website, result, answer = "expected website to contain: "+result) {
     document.write("<div id='"+(tests)+"'>&nbsp&nbsp&nbsp&nbspWaiting Results!"+(tests)+"</div>")
-    document.write("<iframe id='iframe01' height='100' width='100' src=src/testFrameworkSpec/" + website + "></iframe>");
-
-
+    document.write("<iframe id='iframe01' height='0' width='0' src=src/testFrameworkSpec/" + website + "></iframe>");
     document.getElementById('iframe01').onload = function() {
         var content = document.getElementById('iframe01').contentWindow.document.getElementById('testing').innerHTML
         if (content.includes(result)) {
