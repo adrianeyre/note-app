@@ -17,7 +17,6 @@ document.getElementById('addnote').addEventListener('click', function(event) {
 
     function updateNotes() {
         var index = (list.notes.length - 1);
-        console.log(list.notes);
         var noteId = "<li class=note id=note-" + index + ">";
         var content = noteId + list.notes[index].short() + "</li>";
         document.getElementById('notes').innerHTML += content;
@@ -43,12 +42,15 @@ document.getElementById('addnote').addEventListener('click', function(event) {
     function editNote(note, noteElement) {
       var noteElement = noteElement;
       var note = note;
-      console.log(note);
       document.getElementById("editbutton").addEventListener('click', function(event) {
         fadeOut("new-note-container");
         fadeIn("edit-note-container");
         document.getElementById("edit-note-content").value = note.content;
+        saveEdit(note, noteElement);
       }, false);
+    }
+
+    function saveEdit(note, noteElement){
       document.getElementById("save").addEventListener('click', function(event) {
         var newContent = document.getElementById('edit-note-content').value
         note.edit(newContent);
@@ -95,8 +97,7 @@ document.getElementById('addnote').addEventListener('click', function(event) {
     exports.updateNotes = updateNotes;
     exports.getNotes = getNotes;
     exports.noteClick = noteClick;
-    exports.fadeIn = fadeIn;
     exports.editNote = editNote;
-    exports.fadeOut = fadeOut;
+
 
 })(this);
