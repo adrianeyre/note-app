@@ -22,7 +22,7 @@ test.Contains = function(passFunction, result, answer="expected " + passFunction
 
 test.HasContent = function(website, result, answer="WRONG"){
   document.write("<iframe id='iframe01' height='100' width='100' src='src/test.htm'>");
-  var content = document.getElementById('iframe01');
+  var content = document.getElementById('iframe01').contentDocument.body;
   // var content = document.getElementById('iframe01').getElementsByTagName('body');
   // var arr = Object.keys(content).map(function (key) { return content[key]; });
   // console.log(content.contentDocument.body.innerHTML);
@@ -30,9 +30,13 @@ test.HasContent = function(website, result, answer="WRONG"){
   // console.log(document.getElementById('iframe01'))
   // console.log(content.contentDocument.getElementsByTagName('body'))
   // console.log(content.contentWindow.document.getElementsByTagName('body'))
-  console.log(content);
+  // console.log(content.contentDocument.outterHTML);
   document.write("</iframe>");
-  if (content === (result)){return true;}else{return answer;}
+  // console.log(content.contentWindow.document.body);
+  // document.onload()
+  // document.addEventListener("DOMContentLoaded", function(){  console.log("TEST") }); // Handler when the DOM is fully loaded });
+  // console.log(content);
+  if (content.matches("THE")){return true;}else{return answer;}
 };
 
 test.output = function(title, result) {
