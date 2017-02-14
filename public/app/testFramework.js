@@ -52,7 +52,6 @@
   }
 
   function describe (title, passFunction) {
-    sleep(1000);
     document.write("<b>"+title+"</b>");
     passFunction();
     displayResult();
@@ -60,15 +59,6 @@
 
   function displayResult(){
     document.write("<script>document.getElementById('testResults').innerHTML = 'Pass = "+ pass +" Fail = "+ fail +"'</script>");
-  }
-
-  function sleep(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-      if ((new Date().getTime() - start) > milliseconds){
-        break;
-      }
-    }
   }
 
   exports.assert = {}
