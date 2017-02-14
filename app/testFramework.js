@@ -20,25 +20,20 @@ test.Contains = function(passFunction, result, answer="expected " + passFunction
   if (passFunction.includes(result)){return true;}else{return answer;}
 };
 
-test.HasContent = function(website, result){
-  // document.write("<frameset>")
-  // document.write("<frame id='iframe01' src='src/test.htm'>")
-  document.write("<iframe id='iframe01' height='0' width='0' src='src/test.htm'>")
-  var content = document.getElementById('iframe01')
-  console.log(content.contentDocument.body.innerHTML)
-  document.write("</iframe>")
+test.HasContent = function(website, result, answer="WRONG"){
+  document.write("<iframe id='iframe01' height='100' width='100' src='src/test.htm'>");
+  var content = document.getElementById('iframe01');
+  // var content = document.getElementById('iframe01').getElementsByTagName('body');
+  // var arr = Object.keys(content).map(function (key) { return content[key]; });
+  // console.log(content.contentDocument.body.innerHTML);
+  // console.log(content.contentWindow.document.body.innerHTML);
   // console.log(document.getElementById('iframe01'))
-  // var content = document.getElementById('iframe01')
-  // var x = document.getElementById("iframe01").src;
-  // document.getElementById("demo").innerHTML = x;
-  // var content = document.getElementById('iframe01')
-  // document.write("</frameset>")
-  // console.log(content)
-  // content = String(content)
-
-  // document.write("IM HERE")
-  if (content === (result)){return true}else{return "WRONG"}
-}
+  // console.log(content.contentDocument.getElementsByTagName('body'))
+  // console.log(content.contentWindow.document.getElementsByTagName('body'))
+  console.log(content);
+  document.write("</iframe>");
+  if (content === (result)){return true;}else{return answer;}
+};
 
 test.output = function(title, result) {
   var css = "";
@@ -68,11 +63,3 @@ function Counter() {
   this.pass = 0;
   this.fail = 0;
 }
-
-// document.write("<frameset>")
-// document.write("<iframe id='iframe01' height='0' width='0' src='src/test.htm'></iframe>")
-// console.log(document.getElementById('iframe01'))
-// var content = document.getElementById('iframe01')
-// document.write("</frameset>")
-// document.write(content)
-// document.write("IM HERE")
