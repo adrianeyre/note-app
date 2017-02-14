@@ -26,7 +26,7 @@
   }
 
   function HasContent(website, result, answer = "WRONG") {
-    document.write("<iframe id='iframe01' height='100' width='100' src='src/testFrameworkSpec/test.htm'></iframe>");
+    document.write("<iframe id='iframe01' height='100' width='100' src=src/testFrameworkSpec/" + website + "></iframe>");
 
     document.getElementById('iframe01').onload = function() {
         var content = document.getElementById('iframe01').contentWindow.document.getElementById('testing').innerHTML
