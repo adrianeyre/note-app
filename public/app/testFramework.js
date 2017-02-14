@@ -30,9 +30,7 @@
 
     document.getElementById('iframe01').onload = function() {
         var content = document.getElementById('iframe01').contentWindow.document.getElementById('testing').innerHTML
-        var matchedString = content.match(result);
-        if (matchedString) { matchedString = matchedString[0]; }
-        if (matchedString === result ) {
+        if (content.includes(result)) {
             return true;
         } else {
             return answer;
