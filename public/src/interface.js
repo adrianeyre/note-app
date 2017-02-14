@@ -36,7 +36,28 @@ document.getElementById('addnote').addEventListener('click', function(event) {
             var elem = document.getElementById('currentnote');
             elem.innerHTML = list.notes[i].content;
             fadeIn('current-note-container');
+            editNote(list.notes[i], notes[i].id);
         }, false);
+    }
+
+    function editNote(note, noteElement) {
+      var noteElement = noteElement;
+      var note = note;
+      console.log(note);
+      document.getElementById("editbutton").addEventListener('click', function(event) {
+        fadeOut("new-note-container");
+        fadeIn("edit-note-container");
+        document.getElementById("edit-note-content").value = note.content;
+      }, false);
+      document.getElementById("save").addEventListener('click', function(event) {
+        var newContent = document.getElementById('edit-note-content').value
+        note.edit(newContent);
+        var elem = document.getElementById(noteElement);
+        elem.innerHTML = newContent;
+        elem.click();
+        fadeOut("edit-note-container");
+        fadeIn("new-note-container");
+      }, false);
     }
 
     function fadeIn(container) {
@@ -55,10 +76,27 @@ document.getElementById('addnote').addEventListener('click', function(event) {
         }
     }
 
+    function fadeOut(container) {
+        var elem = document.getElementById(container);
+        var opacity = 1;
+        var id = setInterval(frame, 12);
+        document.getElementById(container).classList.remove("show");
+        function frame() {
+            if (opacity >= 0) {
+                clearInterval(id);
+            } else {
+                opacity--;
+                elem.style.opacity = (Math.floor(opacity) * 100);
+            }
+        }
+    }
+
     exports.addNote = addNote;
     exports.updateNotes = updateNotes;
     exports.getNotes = getNotes;
     exports.noteClick = noteClick;
     exports.fadeIn = fadeIn;
+    exports.editNote = editNote;
+    exports.fadeOut = fadeOut;
 
 })(this);
