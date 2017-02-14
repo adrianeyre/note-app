@@ -54,7 +54,7 @@
       var checkExist = setInterval(function() {
         clearInterval(checkExist);
         document.getElementById(tests).innerHTML = output(title, myresult)
-      }, 1000);
+      }, 100);
     } else {
       document.write(output(title, result));
     }

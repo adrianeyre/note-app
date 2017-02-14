@@ -31,7 +31,4 @@ describe("Test suite 2", function() {
     return assert.HasContent("test.htm", "NO");
   });
 
-  it('checks website', function(){
-    return assert.HasContent("new.htm", "THE");
-  });
 });
