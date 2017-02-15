@@ -26,10 +26,10 @@
   }
 
   function HasContent(website, result, answer = "expected website to contain: "+result) {
-    document.write("<div id='"+toString(tests)+"'>&nbsp&nbsp&nbsp&nbspWaiting Results!"+(tests)+"</div>")
-    document.write("<iframe id='iframe01' height='0' width='0' src=src/testFrameworkSpec/" + website + "></iframe>");
+    document.write("<div id='"+toString(tests)+"'>&nbsp&nbsp&nbsp&nbspWaiting for test "+tests+" result!</div>")
+    document.write("<iframe id='iframe01' height='0' width='0' src=" + website + "></iframe>");
     document.getElementById('iframe01').onload = function() {
-        var content = document.getElementById('iframe01').contentWindow.document.getElementById('testing').innerHTML
+        var content = document.getElementById('iframe01').contentWindow.document.body.innerHTML
         if (content.includes(result)) {
             myresult = true;
             return true;
@@ -42,7 +42,7 @@
 
   function output (title, result) {
     var css = "";
-    if (result!==true){css="in"; this.fail++;}else{this.pass++;}
+    if (result!==true){css="in"; fail++;}else{pass++;}
     var output = "<div id='"+css+"correct'>&nbsp&nbsp&nbsp&nbsp"+title+": "+result+"</div>";
     return output;
   }
@@ -55,7 +55,7 @@
         clearInterval(checkExist);
         document.getElementById(toString(tests)).innerHTML = output(title, myresult);
         document.getElementById('testResults').innerHTML = "Pass = " + pass + " Fail = " + fail
-      }, 100);
+      }, 500);
     } else {
       document.write(output(title, result));
     }
@@ -76,7 +76,6 @@
   }
 
   initiate();
-
 
   exports.assert = {}
   exports.assert.Equals = Equals;
