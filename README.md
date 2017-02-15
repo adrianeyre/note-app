@@ -25,6 +25,7 @@ user session.
 
 ## <a name="Technologies">Technologies</a>
 * Javascript
+* Node http-server
 * [Waffle] (https://waffle.io/treborb/notes-app)
 
 ## <a name="Stories">User Stories</a>
