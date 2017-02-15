@@ -78,11 +78,11 @@ In order add additional tests to the app, please do the following:
 ```
 1. Create a new test file in /spec, using JavaScript naming conventions.
 
-2. Add this file to the head of ```test.html``` along with the file being tested.
+2. Add this file to the head of test.html along with the file being tested.
 
 3. Add your tests to your new spec file.
 
-4. Open/refresh ```test.html``` in browser to see the outcome of these tests.
+4. Open/refresh test.html in browser to see the outcome of these tests.
 ```
 
 The testing framework follows these syntax conventions:
