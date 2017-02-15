@@ -36,7 +36,7 @@
     }
 
     function toContain(desiredResult) {
-        var outputString = "expected " + actuals + " to be contain " + desiredResult;
+        var outputString = "expected " + actuals + " to contain " + desiredResult;
         output(actuals, desiredResult, actuals.includes(desiredResult), outputString);
     }
 

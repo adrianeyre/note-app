@@ -30,10 +30,10 @@ describe("Test suite 1", function() {
     expect("Yes").toContain("e");
   });
 
-  it('Has content', function(){
-    console.log(1);
-    expect("index.html").toHaveContent("Hello, welcome to notes");
-  });
+  // it('Has content', function(){
+  //   console.log(1);
+  //   expect("index.html").toHaveContent("Hello, welcome to notes");
+  // });
   //
   // it('returns 1', function(){
   //   console.log(2);
