@@ -27,11 +27,19 @@ describe("Test suite 2", function() {
     return assert.Contains(array(),"bean");
   });
 
-  // it('checks website', function(){
-  //   return assert.HasContent("test.htm", "NO");
-  // });
+  it('checks website', function(){
+    return assert.HasContent("test.htm", "NO");
+  });
 
   it('clicks button', function(){
-    return OnClick("test.htm", "submit", "NO!!")
+    return Click("test.htm", "submit", "NO!!")
+  })
+
+  it('checks website', function(){
+    return assert.HasContent("test.htm", "NO");
+  });
+  
+  it('clicks button', function(){
+    return Click("test.htm", "submit", "NO!!")
   })
 });

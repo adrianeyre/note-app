@@ -3,7 +3,7 @@
   var pass = 0;
   var fail = 0;
   var tests = 0;
-  var myresult = "";
+  var myResult = [];
 
   function Equals(passFunction, result, answer="expected " + passFunction + " to equal " + result) {
     if (passFunction===result){return true;}else{return answer;}
@@ -33,28 +33,31 @@
   function HasContent(website, result, answer = "expected website to contain: "+result) {
     createFrame(website);
     document.getElementById('iframe'+tests).onload = function() {
-        var content = document.getElementById('iframe'+tests).contentWindow.document.getElementById('testing').innerHTML
-        if (content.includes(result)) {
-            myresult = true;
-        } else {
-            myresult = answer;
-        }
-        return;
+
+      var content = document.getElementById('iframe'+tests).contentWindow.document.getElementById('testing').innerHTML
+      if (content.includes(result)) {
+        myResult.push({"title":tests, "result":true});
+      } else {
+        myResult.push({"title":tests, "result":answer});
+      }
+      return;
     };
   }
 
-  function OnClick(website, element, answer = "expected click on button: "+element){
-      createFrame(website);
-      document.getElementById('iframe'+tests).onload = function(){
-        var buttonCheck = document.getElementById('iframe'+tests).contentWindow.document.getElementById(element);
-        if (typeof(buttonCheck) !== 'undefined') {
-          buttonCheck.click();
-          myresult = true;
-        } else {
-          myresult = answer;
-        }
-        return;
-      };
+  function Click(website, element, answer = "expected click on button: "+element){
+    createFrame(website);
+    document.getElementById('iframe'+tests).onload = function(targeter){
+      console.log(targeter.currentTarget)
+      target = targeter.currentTarget
+      var buttonCheck = target.contentWindow.document.getElementById(element);
+      if (typeof(buttonCheck) !== 'undefined') {
+        buttonCheck.click();
+        myResult.push({"title":tests, "result":true});
+      } else {
+        myResult.push({"title":tests, "result":answer});
+      }
+      return;
+    };
   }
 
   function output (title, result) {
@@ -70,7 +73,9 @@
     if (typeof(result) === 'undefined') {
       var checkExist = setInterval(function() {
         clearInterval(checkExist);
-        document.getElementById(toString(tests)).innerHTML = output(title, myresult);
+        myResult.forEach(function(test){
+          document.getElementById(toString(tests)).innerHTML = output(test["title"], test["result"]);
+        })
         document.getElementById('testResults').innerHTML = "Pass = " + pass + " Fail = " + fail
       }, 1000);
     } else {
@@ -102,7 +107,7 @@
   exports.assert.Contains = Contains;
   exports.assert.HasContent = HasContent;
 
-  exports.OnClick = OnClick;
+  exports.Click = Click;
   exports.it = it;
   exports.describe = describe;
 
