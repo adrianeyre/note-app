@@ -15,8 +15,6 @@
 * [Installation] (#Install)
 * [User Stories] (#Stories)
 * [Test Framework] (#Framework)
-* [Screen Shots] (#Shots)
-* [Live on Heroku] (#Heroku)
 
 ## <a name="Task">Task</a>
 Single Page Notes App
