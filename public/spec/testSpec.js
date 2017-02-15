@@ -1,51 +1,38 @@
 describe("Test suite 1", function() {
 
-  // beforeEach(function(){
-  //   var one = new Note("Hello");
-  //   console.log(one);
-  // });
+  beforeEach(function(){
+    var one = new Note("Hello");
+    console.log(one);
+  });
 
   it('Equal', function(){
-    console.log(1);
     expect(returnTrue()).toEqual("HELLO");
   });
 
   it('Not equal', function(){
-    console.log(1);
     expect(returnTrue()).toNotEqual("BYE");
   });
 
   it('Greater than', function(){
-    console.log(1);
     expect(2).toBeGreaterThan(1);
   });
 
   it('Less than', function(){
-    console.log(1);
     expect(1).toBeLessThan(2);
   });
 
   it('Contain', function(){
-    console.log(1);
     expect("Yes").toContain("e");
   });
 
-  // it('Has content', function(){
-  //   console.log(1);
-  //   expect("index.html").toHaveContent("Hello, welcome to notes");
-  // });
-  //
-  // it('returns 1', function(){
-  //   console.log(2);
-  //   return assert.Equals(returnTrue(),1);
-  //
-  // });
-  //
-  // it('array contains element bean', function(){
-  //   console.log(3);
-  //   return assert.Contains(array(),"bean");
-  //
-  // });
+  it('Has content', function(){
+    expect("index.html").toHaveContent("He");
+  });
+
+  it('Has element', function(){
+    expect("index.html").toHaveElement("new-note-content");
+  });
+  
 });
 
 describe("Test suite 2", function() {
