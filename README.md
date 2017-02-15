@@ -46,8 +46,11 @@ So I can see all the information in the note
 To use the notes app, follow these instructions:
 
 ```
-$ git clone this repo
-$ open -a safari localhost:4567
+$ git clone https://github.com/treborb/notes-app
+$ cd notes-app
+$ npm install http-server -g
+$ http-server
+$ open -a safari localhost:8080
 ```
 
 ### Note app screenshot
@@ -58,23 +61,35 @@ the repo includes a bespoke testing framework written from scratch.
 
 ### Installation
 To install to any project
-1. git clone this repo
-2. copy `testFramework.js` into an app folder in your project
-3. copy `test.html`
+```
+$ git clone https://github.com/treborb/notes-app
+$ cd notes-app
+$ npm install http-server -g
+$ http-server
+$ open -a safari localhost:8080/test.html
+```
 
 ### usage
 
 In order add additional tests to the app, please do the following:
 
+```
 1. Create a new test file in /spec, using JavaScript naming conventions.
+
 2. Add this file to the head of ```test.html``` along with the file being tested.
+
 3. Add your tests to your new spec file.
+
 4. Open/refresh ```test.html``` in browser to see the outcome of these tests.
+```
 
 The testing framework follows these syntax conventions:
 
+```
 1. A describe block containing a description of the testing suite.
+
 2. An it block describing the test to be run.
+```
 
 Example syntax of a simple describe/it block:
 ```js
@@ -85,9 +100,6 @@ describe("Test suite 1", function() {
 });
 
 ```
-### running tests
-To see active tests, do the following:
-* Open ```test.html```. This provides an output of all currently active and failing tests.
 
 ### matchers
 The following matchers are present in this testing framework:
