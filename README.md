@@ -23,6 +23,8 @@ This is a single-page notes app allowing users to create a note, and have it
 appear in a list of notes created that session. Notes will not persist beyond the
 user session.
 
+We were asked to create a testing framework in Javascript from scratch. Once the framework had been completed we could then use it to test or applicaion.
+
 ## <a name="Technologies">Technologies</a>
 * Javascript
 * Node http-server
