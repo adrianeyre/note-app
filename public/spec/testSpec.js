@@ -32,7 +32,7 @@ describe("Test suite 1", function() {
   it('Has element', function(){
     expect("index.html").toHaveElement("new-note-content");
   });
-  
+
 });
 
 describe("Test suite 2", function() {

@@ -67,19 +67,8 @@
         return pageContent.includes(desiredResult);
     }
 
-    function checkElement(pageContent, desiredResult) {
-        return pageContent.includes(desiredResult);
-    }
-
     function toHaveElement(desiredResult) {
-        var webpage = actuals
-        loadPage(webpage)
-        var outputString = "expected " + actuals + " to have element " + desiredResult;
-        var result = setTimeout(checkContent, 100, desiredResult)
-        setTimeout(function(){
-            var result = checkElement(response, desiredResult);
-            output(actuals, desiredResult, result, outputString)
-        }, 200);
+        toHaveContent(desiredResult)
     }
 
     function output(actualValue, desiredResult, result, outputString) {
