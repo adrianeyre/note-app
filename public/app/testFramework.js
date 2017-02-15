@@ -45,20 +45,21 @@
       document.write("<iframe id='iframe01' height='0' width='0' src=src/testFrameworkSpec/" + website + "></iframe>");
       document.getElementById('iframe01').onload = function(){
         var buttonCheck = document.getElementById('iframe01').contentWindow.document.getElementById(element);
-        console.log(buttonCheck)
-        if (buttonCheck.click() === true){
+        if (typeof(buttonCheck) !== 'undefined') {
+          buttonCheck.click();
           myresult = true;
-          return true;
         } else {
           myresult = answer;
-          return answer;
         }
+        return
       }
   }
 
+
+
   function output (title, result) {
     var css = "";
-    if (result!==true){css="in"; this.fail++;}else{this.pass++;}
+    if (result!==true){css="in"; fail++;}else{pass++;}
     var output = "<div id='"+css+"correct'>&nbsp&nbsp&nbsp&nbsp"+title+": "+result+"</div>";
     return output;
   }
