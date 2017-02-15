@@ -1,4 +1,4 @@
-# Further Javascript - Note App
+# Further Javascript - Notes App
 ### [Makers Academy] (http://www.makersacademy.com) - Week 7 Group Project
 
 ## Team Members
