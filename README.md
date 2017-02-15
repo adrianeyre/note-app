@@ -1,55 +1,97 @@
-# furtherJS
-This repo contains the project work for week 7 of Makers Academy
+# Further Javascript - Notes App
+### [Makers Academy] (http://www.makersacademy.com) - Week 7 Group Project
 
-It contains the work of
-* [TheSedatedPrince](https://github.com/thesedatedprince) Matt Perry
-* [Treborb](https://github.com/treborb) Rob Brentnall
-* [Adrianeyre](https://github.com/adrianeyre) Adrian Eyre
-* [JamesTurnerGit](https://github.com/JamesTurnerGit) James Turner
-* [BenJohnCarson](https://github.com/BenJohnCarson) Ben Carson
-* [J-marriott](https://github.com/j-marriott) Joe Marriott
+## Team Members
+* [Matt Perry](https://github.com/thesedatedprince)
+* [Rob Brentnall](https://github.com/treborb)
+* [Adrian Eyre](https://github.com/adrianeyre)
+* [James Turner](https://github.com/JamesTurnerGit)
+* [Ben Carson](https://github.com/BenJohnCarson)
+* [Joe Marriott](https://github.com/j-marriott)
 
-***
-## notes-app
+## Index
+* [Task] (#Task)
+* [Technologies] (#Technologies)
+* [Installation] (#Install)
+* [User Stories] (#Stories)
+* [Test Framework] (#Framework)
 
+## <a name="Task">Task</a>
 Single Page Notes App
 
 This is a single-page notes app allowing users to create a note, and have it
 appear in a list of notes created that session. Notes will not persist beyond the
 user session.
 
-### installation
-To use the notes app, follow these instructions:
+## <a name="Technologies">Technologies</a>
+* Javascript
+* Node http-server
+* HTML
+* CSS
+* [Waffle] (https://waffle.io/treborb/notes-app)
 
-1.  git clone this repo
-2.  open ```index.html```
+## <a name="Stories">User Stories</a>
+```
+As a programmer
+I can see a list of my notes, where each note is abbreviated to the first 20 characters
+So I can find the one I want
 
-//include image of notes app here.
+As a programmer
+I can create a new note
+So I can record something I need to remember
 
+As a programmer
+I can see the full text of an individual note on its own page
+So I can see all the information in the note
+```
 
-***
-## Testing framework
+## <a name="Install">Installation</a>
+To use the notes app and install node http server, follow these instructions:
+
+```
+$ git clone https://github.com/treborb/notes-app
+$ cd notes-app
+$ npm install http-server -g
+$ http-server
+$ open -a safari localhost:8080
+```
+
+### Note app screenshot
+[![ScreenShot1](https://raw.githubusercontent.com/treborb/notes-app/master/images/screenshot1.png)](https://raw.githubusercontent.com/treborb/notes-app/master/images/screenshot1.png "Screen Shot 1")
+
+## <a name="Framework">Testing Framework</a>
 the repo includes a bespoke testing framework written from scratch.
 
 ### Installation
 To install to any project
-1. git clone this repo
-2. copy `testFramework.js` into an app folder in your project
-3. copy `test.html`
+```
+$ git clone https://github.com/treborb/notes-app
+$ cd notes-app
+$ http-server
+$ open -a safari localhost:8080/test.html
+```
 
 ### usage
 
 In order add additional tests to the app, please do the following:
 
+```
 1. Create a new test file in /spec, using JavaScript naming conventions.
-2. Add this file to the head of ```test.html``` along with the file being tested.
+
+2. Add this file to the head of test.html along with the file being tested.
+
 3. Add your tests to your new spec file.
-4. Open/refresh ```test.html``` in browser to see the outcome of these tests.
+
+4. Open/refresh test.html in browser to see the outcome of these tests.
+```
 
 The testing framework follows these syntax conventions:
 
+```
 1. A describe block containing a description of the testing suite.
+
 2. An it block describing the test to be run.
+```
 
 Example syntax of a simple describe/it block:
 ```js
@@ -60,9 +102,6 @@ describe("Test suite 1", function() {
 });
 
 ```
-### running tests
-To see active tests, do the following:
-* Open ```test.html```. This provides an output of all currently active and failing tests.
 
 ### matchers
 The following matchers are present in this testing framework:
@@ -88,3 +127,7 @@ describe("Test suite 1", function() {
 ```
 
 This will now return ":(" on fail.
+
+### Test framework output
+
+[![ScreenShot2](https://raw.githubusercontent.com/treborb/notes-app/master/images/screenshot2.png)](https://raw.githubusercontent.com/treborb/notes-app/master/images/screenshot2.png "Screen Shot 2")
