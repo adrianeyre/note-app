@@ -55,7 +55,7 @@
         clearInterval(checkExist);
         document.getElementById(toString(tests)).innerHTML = output(title, myresult);
         document.getElementById('testResults').innerHTML = "Pass = " + pass + " Fail = " + fail
-      }, 100);
+      }, 1000);
     } else {
       document.write(output(title, result));
     }
