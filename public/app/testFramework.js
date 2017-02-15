@@ -32,9 +32,9 @@
 
   function HasContent(website, result, answer = "expected website to contain: "+result) {
     createFrame(website);
-    document.getElementById('iframe'+tests).onload = function() {
-
-      var content = document.getElementById('iframe'+tests).contentWindow.document.getElementById('testing').innerHTML
+    document.getElementById('iframe'+tests).onload = function(targeter) {
+      target = targeter.currentTarget
+      var content = target.contentWindow.document.getElementById('testing').innerHTML
       if (content.includes(result)) {
         myResult.push({"title":tests, "result":true});
       } else {
@@ -47,15 +47,16 @@
   function Click(website, element, answer = "expected click on button: "+element){
     createFrame(website);
     document.getElementById('iframe'+tests).onload = function(targeter){
-      console.log(targeter.currentTarget)
       target = targeter.currentTarget
+      test = parseInt(target.id.slice(6, target.id.length));
       var buttonCheck = target.contentWindow.document.getElementById(element);
       if (typeof(buttonCheck) !== 'undefined') {
         buttonCheck.click();
-        myResult.push({"title":tests, "result":true});
+        myResult.push({"title":test, "result":true});
       } else {
-        myResult.push({"title":tests, "result":answer});
+        myResult.push({"title":test, "result":answer});
       }
+      console.log(myResult)
       return;
     };
   }
