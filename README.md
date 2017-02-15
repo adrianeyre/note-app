@@ -8,6 +8,7 @@ It contains the work of
 * [JamesTurnerGit](https://github.com/JamesTurnerGit) James Turner
 * [BenJohnCarson](https://github.com/BenJohnCarson) Ben Carson
 * [J-marriott](https://github.com/j-marriott) Joe Marriott
+
 ***
 ## notes-app
 
