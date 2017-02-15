@@ -14,6 +14,11 @@
     }
   };
 
+  Note.prototype.edit = function(newContent){
+    this.content = newContent;
+  };
+
   exports.Note = Note;
   exports.Note.short = Note.short;
+  exports.Note.edit = Note.edit;
 })(this);
