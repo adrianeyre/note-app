@@ -4,7 +4,7 @@
   var fail = 0;
   var tests = 0;
   var myresult = "";
-
+  var itFunctions = [];
   function Equals(passFunction, result, answer="expected " + passFunction + " to equal " + result) {
     if (passFunction===result){return true;}else{return answer;}
   }
@@ -48,6 +48,7 @@
   }
 
   function it(title, passFunction){
+    beforeEachCaller();
     tests++;
     var result = passFunction();
     if (typeof(result) === 'undefined') {
@@ -66,6 +67,7 @@
   }
 
   function describe (title, passFunction) {
+    clearBefores();
     document.write("<b>"+title+"</b>");
     passFunction();
     displayResult();
