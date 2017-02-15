@@ -29,15 +29,15 @@
 
   function createFrame(website){
     document.write("<div id='test"+tests+"'>&nbsp&nbsp&nbsp&nbspWaiting Results!"+(tests)+"</div>");
-    document.write("<iframe id='iframe"+tests+"' height='0' width='0' src=src/testFrameworkSpec/" + website + "></iframe>");
+    document.write("<iframe id='iframe"+tests+"' height='0' width='0' src=spec/" + website + "></iframe>");
   }
 
   function HasContent(website, result, answer = "expected website to contain: "+result) {
     createFrame(website);
     myTest.push(tests);
     document.getElementById('iframe'+tests).onload = function(targeter) {
-      target = targeter.currentTarget;
-      var content = target.contentWindow.document.getElementById('testing').innerHTML;
+      var target = targeter.currentTarget;
+      var content = target.contentWindow.document.body.innerHTML;
       if (content.includes(result)) {myResult.push(true);} else {myResult.push(answer);}
       return;
     };
@@ -47,7 +47,7 @@
     createFrame(website);
     myTest.push(tests);
     document.getElementById('iframe'+tests).onload = function(targeter){
-      target = targeter.currentTarget;
+      var target = targeter.currentTarget;
       var elementCheck = target.contentWindow.document.getElementById(element);
       if (elementCheck !== null) {
         myResult.push(true);
@@ -57,7 +57,6 @@
       return;
     };
   }
-
 
   function output (title, result) {
     var css = "";
@@ -82,7 +81,7 @@
   }
 
   function delayedAnswer(number){
-    i = myTest.indexOf(number)
+    var i = myTest.indexOf(number);
     document.getElementById("test"+myTest[i]).innerHTML = output(myTitle[i], myResult[i]);
     document.getElementById('testResults').innerHTML = "Pass = " + pass + " Fail = " + fail;
   }
