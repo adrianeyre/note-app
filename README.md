@@ -1,34 +1,51 @@
 # furtherJS
-This repo contains the project work for week 7 of Makers Academy
+### [Makers Academy] (http://www.makersacademy.com) - Week 7 Group Project
 
-It contains the work of
-* [TheSedatedPrince](https://github.com/thesedatedprince) Matt Perry
-* [Treborb](https://github.com/treborb) Rob Brentnall
-* [Adrianeyre](https://github.com/adrianeyre) Adrian Eyre
-* [JamesTurnerGit](https://github.com/JamesTurnerGit) James Turner
-* [BenJohnCarson](https://github.com/BenJohnCarson) Ben Carson
-* [J-marriott](https://github.com/j-marriott) Joe Marriott
+## Team Members
+* [Matt Perry](https://github.com/thesedatedprince)
+* [Rob Brentnall](https://github.com/treborb)
+* [Adrian Eyre](https://github.com/adrianeyre)
+* [James Turner](https://github.com/JamesTurnerGit)
+* [Ben Carson](https://github.com/BenJohnCarson)
+* [Joe Marriott](https://github.com/j-marriott)
 
-***
-## notes-app
+## Index
+* [Task] (#Task)
+* [Technologies] (#Technologies)
+* [Installation] (#Install)
+* [User Stories] (#Stories)
+* [Test Framework] (#Framework)
+* [Screen Shots] (#Shots)
+* [Live on Heroku] (#Heroku)
 
+## <a name="Task">Task</a>
 Single Page Notes App
 
 This is a single-page notes app allowing users to create a note, and have it
 appear in a list of notes created that session. Notes will not persist beyond the
 user session.
 
-### installation
+## <a name="Technologies">Technologies</a>
+* Javascript
+* [Waffle] (https://waffle.io/treborb/notes-app)
+
+## <a name="Stories">User Stories</a>
+```
+
+```
+
+## <a name="Install">Installation</a>
 To use the notes app, follow these instructions:
 
-1.  git clone this repo
-2.  open ```index.html```
+```
+$ git clone this repo
+$ open -a safari localhost:4567
+```
 
-//include image of notes app here.
+### Note app screenshot
+[![ScreenShot1](https://raw.githubusercontent.com/treborb/notes-app/master/images/screenshot1.png)](https://raw.githubusercontent.com/treborb/notes-app/master/images/screenshot1.png "Screen Shot 1")
 
-
-***
-## Testing framework
+## <a name="Framework">Testing Framework</a>
 the repo includes a bespoke testing framework written from scratch.
 
 ### Installation
@@ -88,3 +105,7 @@ describe("Test suite 1", function() {
 ```
 
 This will now return ":(" on fail.
+
+### Test framework output
+
+[![ScreenShot2](https://raw.githubusercontent.com/treborb/notes-app/master/images/screenshot2.png)](https://raw.githubusercontent.com/treborb/notes-app/master/images/screenshot2.png "Screen Shot 2")
