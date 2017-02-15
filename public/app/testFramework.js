@@ -1,4 +1,9 @@
+
 (function(exports){
+  var pass = 0;
+  var fail = 0;
+  var tests = 0;
+  var myresult = "";
 
   function Equals(passFunction, result, answer="expected " + passFunction + " to equal " + result) {
     if (passFunction===result){return true;}else{return answer;}
@@ -20,14 +25,16 @@
     if (passFunction.includes(result)){return true;}else{return answer;}
   }
 
-  function HasContent(website, result, answer = "WRONG") {
-    document.write("<iframe id='iframe01' height='100' width='100' src=src/testFrameworkSpec/" + website + "></iframe>");
-
+  function HasContent(website, result, answer = "expected website to contain: "+result) {
+    document.write("<div id='"+toString(tests)+"'>&nbsp&nbsp&nbsp&nbspWaiting Results!"+(tests)+"</div>")
+    document.write("<iframe id='iframe01' height='0' width='0' src=src/testFrameworkSpec/" + website + "></iframe>");
     document.getElementById('iframe01').onload = function() {
         var content = document.getElementById('iframe01').contentWindow.document.getElementById('testing').innerHTML
         if (content.includes(result)) {
+            myresult = true;
             return true;
         } else {
+            myresult = answer;
             return answer;
         }
     }
@@ -35,21 +42,27 @@
 
   function output (title, result) {
     var css = "";
-    var fail;
-    if (result!==true){css="in"; fail++;}else{pass++;}
+    if (result!==true){css="in"; this.fail++;}else{this.pass++;}
     var output = "<div id='"+css+"correct'>&nbsp&nbsp&nbsp&nbsp"+title+": "+result+"</div>";
     return output;
   }
 
   function it(title, passFunction){
+    tests++;
     var result = passFunction();
-    document.write(output(title, result));
+    if (typeof(result) === 'undefined') {
+      var checkExist = setInterval(function() {
+        clearInterval(checkExist);
+        document.getElementById(toString(tests)).innerHTML = output(title, myresult);
+        document.getElementById('testResults').innerHTML = "Pass = " + pass + " Fail = " + fail
+      }, 100);
+    } else {
+      document.write(output(title, result));
+    }
   }
 
   function initiate(){
     document.write("<div id='testResults'>Pass = 0 Fail = 0</div>");
-    var pass = 0;
-    var fail = 0;
   }
 
   function describe (title, passFunction) {
@@ -57,12 +70,13 @@
     passFunction();
     displayResult();
   }
-  
-  initiate()
 
   function displayResult(){
     document.write("<script>document.getElementById('testResults').innerHTML = 'Pass = "+ pass +" Fail = "+ fail +"'</script>");
   }
+
+  initiate();
+
 
   exports.assert = {}
   exports.assert.Equals = Equals;

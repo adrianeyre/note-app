@@ -28,6 +28,6 @@ describe("Test suite 2", function() {
   });
 
   it('checks website', function(){
-    return assert.HasContent("test.htm", "THE");
+    return assert.HasContent("test.htm", "NO");
   });
 });
