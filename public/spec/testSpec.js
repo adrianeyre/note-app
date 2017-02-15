@@ -51,8 +51,22 @@ describe("Test suite 2", function() {
   });
 
   it('checks website', function(){
-    console.log(7);
-    return assert.HasContent("index.html", "Hello");
+    return assert.HasContent("test.html", "YES");
+  });
 
+  it('checks website', function(){
+    return assert.HasContent("test.html", "NO");
+  });
+
+  it('checks website', function(){
+    return assert.HasContent("test.html", "THE");
+  });
+
+  it('clicks button', function(){
+    return assert.HasElement("test.html", "BUTTON", "NO!!");
+  });
+
+  it('clicks button', function(){
+    return assert.HasElement("test.html", "submit", "NO!!");
   });
 });

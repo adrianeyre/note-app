@@ -3,7 +3,9 @@
   var pass = 0;
   var fail = 0;
   var tests = 0;
-  var myresult = "";
+  var myResult = [];
+  var myTest = [];
+  var myTitle = [];
   var itFunctions = [];
   var befores = {};
 
@@ -27,25 +29,41 @@
     if (passFunction.includes(result)){return true;}else{return answer;}
   }
 
+  function createFrame(website){
+    document.write("<div id='test"+tests+"'>&nbsp&nbsp&nbsp&nbspWaiting Results!"+(tests)+"</div>");
+    document.write("<iframe id='iframe"+tests+"' height='0' width='0' src=spec/" + website + "></iframe>");
+  }
+
   function HasContent(website, result, answer = "expected website to contain: "+result) {
-    document.write("<div id='"+toString(tests)+"'>&nbsp&nbsp&nbsp&nbspWaiting for test "+tests+" result!</div>")
-    document.write("<iframe id='iframe01' height='0' width='0' src=" + website + "></iframe>");
-    document.getElementById('iframe01').onload = function() {
-        var content = document.getElementById('iframe01').contentWindow.document.body.innerHTML
-        if (content.includes(result)) {
-            myresult = true;
-            return true;
-        } else {
-            myresult = answer;
-            return answer;
-        }
-    }
+    createFrame(website);
+    myTest.push(tests);
+    document.getElementById('iframe'+tests).onload = function(targeter) {
+      var target = targeter.currentTarget;
+      var content = target.contentWindow.document.body.innerHTML;
+      if (content.includes(result)) {myResult.push(true);} else {myResult.push(answer);}
+      return;
+    };
+  }
+
+  function HasElement(website, element, answer = "expected click on button: "+element){
+    createFrame(website);
+    myTest.push(tests);
+    document.getElementById('iframe'+tests).onload = function(targeter){
+      var target = targeter.currentTarget;
+      var elementCheck = target.contentWindow.document.getElementById(element);
+      if (elementCheck !== null) {
+        myResult.push(true);
+      } else {
+        myResult.push(answer);
+      }
+      return;
+    };
   }
 
   function output (title, result) {
     var css = "";
     if (result!==true){css="in"; fail++;}else{pass++;}
-    var output = "<div id='"+css+"correct'>&nbsp&nbsp&nbsp&nbsp"+title+"</div>";
+    var output = "<div id='"+css+"correct'>&nbsp&nbsp&nbsp&nbsp"+title+": "+result+"</div>";
     return output;
   }
 
@@ -54,11 +72,8 @@
     tests++;
     var result = passFunction();
     if (typeof(result) === 'undefined') {
-      var checkExist = setInterval(function() {
-        clearInterval(checkExist);
-        document.getElementById(toString(tests)).innerHTML = output(title, myresult);
-        document.getElementById('testResults').innerHTML = "Pass = " + pass + " Fail = " + fail
-      }, 500);
+      myTitle.push(title);
+      setTimeout(delayedAnswer, 500,tests);
     } else {
       document.write(output(title, result));
     }
@@ -66,6 +81,12 @@
 
   function initiate(){
     document.write("<div id='testResults'>Pass = 0 Fail = 0</div>");
+  }
+
+  function delayedAnswer(number){
+    var i = myTest.indexOf(number);
+    document.getElementById("test"+myTest[i]).innerHTML = output(myTitle[i], myResult[i]);
+    document.getElementById('testResults').innerHTML = "Pass = " + pass + " Fail = " + fail;
   }
 
   function describe (title, passFunction) {
@@ -95,19 +116,20 @@
 
   initiate();
 
-  exports.assert = {}
+  exports.assert = {};
   exports.assert.Equals = Equals;
   exports.assert.NotEquals = NotEquals;
   exports.assert.GreaterThan = GreaterThan;
   exports.assert.LessThan = LessThan;
   exports.assert.Contains = Contains;
   exports.assert.HasContent = HasContent;
+  exports.assert.HasElement = HasElement;
 
-  exports.beforeEach = beforeEach
-  exports.beforeEachCaller = beforeEachCaller
-  exports.clearBefores = clearBefores
+  exports.beforeEach = beforeEach;
+  exports.beforeEachCaller = beforeEachCaller;
+  exports.clearBefores = clearBefores;
 
-  exports.it = it
-  exports.describe = describe
+  exports.it = it;
+  exports.describe = describe;
 
-})(this)
+})(this);
