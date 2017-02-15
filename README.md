@@ -43,7 +43,7 @@ So I can see all the information in the note
 ```
 
 ## <a name="Install">Installation</a>
-To use the notes app, follow these instructions:
+To use the notes app and install node http server, follow these instructions:
 
 ```
 $ git clone https://github.com/treborb/notes-app
@@ -64,7 +64,6 @@ To install to any project
 ```
 $ git clone https://github.com/treborb/notes-app
 $ cd notes-app
-$ npm install http-server -g
 $ http-server
 $ open -a safari localhost:8080/test.html
 ```
