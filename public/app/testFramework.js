@@ -40,6 +40,22 @@
     }
   }
 
+  function OnClick(website, element, answer = "expected click on button: "+element){
+      document.write("<div id='"+toString(tests)+"'>&nbsp&nbsp&nbsp&nbspWaiting Results!"+(tests)+"</div>")
+      document.write("<iframe id='iframe01' height='0' width='0' src=src/testFrameworkSpec/" + website + "></iframe>");
+      document.getElementById('iframe01').onload = function(){
+        var buttonCheck = document.getElementById('iframe01').contentWindow.document.getElementById(element);
+        console.log(buttonCheck)
+        if (buttonCheck.click() === true){
+          myresult = true;
+          return true;
+        } else {
+          myresult = answer;
+          return answer;
+        }
+      }
+  }
+
   function output (title, result) {
     var css = "";
     if (result!==true){css="in"; this.fail++;}else{this.pass++;}
@@ -85,6 +101,7 @@
   exports.assert.LessThan = LessThan;
   exports.assert.Contains = Contains;
   exports.assert.HasContent = HasContent;
+  exports.assert.OnClick = OnClick;
 
   exports.it = it
   exports.describe = describe
