@@ -32,6 +32,6 @@ describe("Test suite 2", function() {
   // });
 
   it('clicks button', function(){
-    return assert.OnClick("test.htm", "submit", "NO!!")
+    return OnClick("test.htm", "submit", "NO!!")
   })
 });

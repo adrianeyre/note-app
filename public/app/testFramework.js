@@ -25,37 +25,37 @@
     if (passFunction.includes(result)){return true;}else{return answer;}
   }
 
+  function createFrame(website){
+    document.write("<div id='"+toString(tests)+"'>&nbsp&nbsp&nbsp&nbspWaiting Results!"+(tests)+"</div>");
+    document.write("<iframe id='iframe"+tests+"' height='0' width='0' src=src/testFrameworkSpec/" + website + "></iframe>");
+  }
+
   function HasContent(website, result, answer = "expected website to contain: "+result) {
-    document.write("<div id='"+toString(tests)+"'>&nbsp&nbsp&nbsp&nbspWaiting Results!"+(tests)+"</div>")
-    document.write("<iframe id='iframe01' height='0' width='0' src=src/testFrameworkSpec/" + website + "></iframe>");
-    document.getElementById('iframe01').onload = function() {
-        var content = document.getElementById('iframe01').contentWindow.document.getElementById('testing').innerHTML
+    createFrame(website);
+    document.getElementById('iframe'+tests).onload = function() {
+        var content = document.getElementById('iframe'+tests).contentWindow.document.getElementById('testing').innerHTML
         if (content.includes(result)) {
             myresult = true;
-            return true;
         } else {
             myresult = answer;
-            return answer;
         }
-    }
+        return;
+    };
   }
 
   function OnClick(website, element, answer = "expected click on button: "+element){
-      document.write("<div id='"+toString(tests)+"'>&nbsp&nbsp&nbsp&nbspWaiting Results!"+(tests)+"</div>")
-      document.write("<iframe id='iframe01' height='0' width='0' src=src/testFrameworkSpec/" + website + "></iframe>");
-      document.getElementById('iframe01').onload = function(){
-        var buttonCheck = document.getElementById('iframe01').contentWindow.document.getElementById(element);
+      createFrame(website);
+      document.getElementById('iframe'+tests).onload = function(){
+        var buttonCheck = document.getElementById('iframe'+tests).contentWindow.document.getElementById(element);
         if (typeof(buttonCheck) !== 'undefined') {
           buttonCheck.click();
           myresult = true;
         } else {
           myresult = answer;
         }
-        return
-      }
+        return;
+      };
   }
-
-
 
   function output (title, result) {
     var css = "";
@@ -94,17 +94,16 @@
 
   initiate();
 
-
-  exports.assert = {}
+  exports.assert = {};
   exports.assert.Equals = Equals;
   exports.assert.NotEquals = NotEquals;
   exports.assert.GreaterThan = GreaterThan;
   exports.assert.LessThan = LessThan;
   exports.assert.Contains = Contains;
   exports.assert.HasContent = HasContent;
-  exports.assert.OnClick = OnClick;
 
-  exports.it = it
-  exports.describe = describe
+  exports.OnClick = OnClick;
+  exports.it = it;
+  exports.describe = describe;
 
-})(this)
+})(this);
