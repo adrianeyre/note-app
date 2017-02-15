@@ -4,6 +4,8 @@
   var fail = 0;
   var tests = 0;
   var myResult = [];
+  var myTest = [];
+  var myTitle = [];
 
   function Equals(passFunction, result, answer="expected " + passFunction + " to equal " + result) {
     if (passFunction===result){return true;}else{return answer;}
@@ -26,37 +28,34 @@
   }
 
   function createFrame(website){
-    document.write("<div id='"+toString(tests)+"'>&nbsp&nbsp&nbsp&nbspWaiting Results!"+(tests)+"</div>");
+    document.write("<div id='test"+tests+"'>&nbsp&nbsp&nbsp&nbspWaiting Results!"+(tests)+"</div>");
     document.write("<iframe id='iframe"+tests+"' height='0' width='0' src=src/testFrameworkSpec/" + website + "></iframe>");
   }
 
   function HasContent(website, result, answer = "expected website to contain: "+result) {
     createFrame(website);
+    myTest.push(tests);
     document.getElementById('iframe'+tests).onload = function(targeter) {
-      target = targeter.currentTarget
-      var content = target.contentWindow.document.getElementById('testing').innerHTML
-      if (content.includes(result)) {
-        myResult.push({"title":tests, "result":true});
-      } else {
-        myResult.push({"title":tests, "result":answer});
-      }
+      target = targeter.currentTarget;
+      var content = target.contentWindow.document.getElementById('testing').innerHTML;
+      if (content.includes(result)) {myResult.push(true);} else {myResult.push(answer);}
       return;
     };
   }
 
   function Click(website, element, answer = "expected click on button: "+element){
     createFrame(website);
+    myTest.push(tests);
     document.getElementById('iframe'+tests).onload = function(targeter){
-      target = targeter.currentTarget
+      target = targeter.currentTarget;
       test = parseInt(target.id.slice(6, target.id.length));
       var buttonCheck = target.contentWindow.document.getElementById(element);
-      if (typeof(buttonCheck) !== 'undefined') {
+      if (buttonCheck !== null) {
         buttonCheck.click();
-        myResult.push({"title":test, "result":true});
+        myResult.push(true);
       } else {
-        myResult.push({"title":test, "result":answer});
+        myResult.push(answer);
       }
-      console.log(myResult)
       return;
     };
   }
@@ -72,13 +71,14 @@
     tests++;
     var result = passFunction();
     if (typeof(result) === 'undefined') {
+      myTitle.push(title);
       var checkExist = setInterval(function() {
         clearInterval(checkExist);
-        myResult.forEach(function(test){
-          document.getElementById(toString(tests)).innerHTML = output(test["title"], test["result"]);
-        })
-        document.getElementById('testResults').innerHTML = "Pass = " + pass + " Fail = " + fail
-      }, 1000);
+        for (var i=0; i<myResult.length;i++){
+          document.getElementById("test"+myTest[i]).innerHTML = output(myTitle[i], myResult[i]);
+        }
+        document.getElementById('testResults').innerHTML = "Pass = " + pass + " Fail = " + fail;
+      }, 100);
     } else {
       document.write(output(title, result));
     }

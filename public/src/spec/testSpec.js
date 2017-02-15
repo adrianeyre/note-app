@@ -28,18 +28,22 @@ describe("Test suite 2", function() {
   });
 
   it('checks website', function(){
-    return assert.HasContent("test.htm", "NO");
+    return assert.HasContent("test.htm", "YES");
   });
-
-  it('clicks button', function(){
-    return Click("test.htm", "submit", "NO!!")
-  })
 
   it('checks website', function(){
     return assert.HasContent("test.htm", "NO");
   });
-  
+
+  it('checks website', function(){
+    return assert.HasContent("test.htm", "THE");
+  });
+
   it('clicks button', function(){
-    return Click("test.htm", "submit", "NO!!")
-  })
+    return Click("test.htm", "BUTTON", "NO!!");
+  });
+
+  it('clicks button', function(){
+    return Click("test.htm", "submit", "NO!!");
+  });
 });
