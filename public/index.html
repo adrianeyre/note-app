@@ -4,13 +4,14 @@
 <head>
     <title>Notes</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="src/interface.js" defer></script>
     <script src="src/list.js"></script>
     <script src="src/note.js"></script>
+    <script src="src/interface.js" defer></script>
 </head>
 <body>
     <h1>Hello, welcome to notes</h1>
     <div id="wrapper">
+    <div id="new-note-container" class="show">
         <section id="newnote">
             <h2>New Note</h2>
             <textarea id="new-note-content"></textarea>
@@ -18,11 +19,25 @@
                 Add note
             </div>
         </section>
+      </div>
+        <div id="edit-note-container">
+            <h3>Edit Note</h3>
+            <section id="editnote">
+              <textarea id="edit-note-content"></textarea>
+            </section>
+            <div id="save">
+              Save Note
+            </div>
+        </div>
         <div id="current-note-container">
             <h3>Current Note</h3>
             <section id="currentnote">
             </section>
+            <div id="editbutton">
+              Edit Note
+            </div>
         </div>
+
         <div id="notes-container">
             <h3>Notes List</h3>
             <section id="notelist">

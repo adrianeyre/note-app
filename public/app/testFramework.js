@@ -42,7 +42,7 @@
 
   function output (title, result) {
     var css = "";
-    if (result!==true){css="in"; fail++;}else{pass++;}
+    if (result!==true){css="in"; this.fail++;}else{this.pass++;}
     var output = "<div id='"+css+"correct'>&nbsp&nbsp&nbsp&nbsp"+title+": "+result+"</div>";
     return output;
   }
@@ -76,6 +76,7 @@
   }
 
   initiate();
+
 
   exports.assert = {}
   exports.assert.Equals = Equals;
