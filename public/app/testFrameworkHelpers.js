@@ -1,8 +1,8 @@
-(function(exports){
+(function(exports) {
 
-fill_in = function(inputField, text){
-  document.getElementById(inputField).value = text;
-}
+    var fill_in = function(inputField, text) {
+        document.getElementById(inputField).value = text;
+    }
 
-exports.fill_in = fill_in
+    exports.fill_in = fill_in
 })(this)
