@@ -5,6 +5,8 @@
   var tests = 0;
   var myresult = "";
   var itFunctions = [];
+  var befores = {};
+
   function Equals(passFunction, result, answer="expected " + passFunction + " to equal " + result) {
     if (passFunction===result){return true;}else{return answer;}
   }
@@ -77,6 +79,20 @@
     document.write("<script>document.getElementById('testResults').innerHTML = 'Pass = "+ pass +" Fail = "+ fail +"'</script>");
   }
 
+  function beforeEach(beforeEachFunction) {
+      befores = beforeEachFunction;
+  }
+
+  function beforeEachCaller() {
+      if(typeof(befores) === "function") {
+          return befores();
+      }
+  }
+
+  function clearBefores() {
+      befores = {};
+  }
+
   initiate();
 
   exports.assert = {}
@@ -86,6 +102,10 @@
   exports.assert.LessThan = LessThan;
   exports.assert.Contains = Contains;
   exports.assert.HasContent = HasContent;
+
+  exports.beforeEach = beforeEach
+  exports.beforeEachCaller = beforeEachCaller
+  exports.clearBefores = clearBefores
 
   exports.it = it
   exports.describe = describe
