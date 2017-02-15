@@ -43,15 +43,13 @@
     };
   }
 
-  function Click(website, element, answer = "expected click on button: "+element){
+  function HasElement(website, element, answer = "expected click on button: "+element){
     createFrame(website);
     myTest.push(tests);
     document.getElementById('iframe'+tests).onload = function(targeter){
       target = targeter.currentTarget;
-      test = parseInt(target.id.slice(6, target.id.length));
-      var buttonCheck = target.contentWindow.document.getElementById(element);
-      if (buttonCheck !== null) {
-        buttonCheck.click();
+      var elementCheck = target.contentWindow.document.getElementById(element);
+      if (elementCheck !== null) {
         myResult.push(true);
       } else {
         myResult.push(answer);
@@ -59,6 +57,7 @@
       return;
     };
   }
+
 
   function output (title, result) {
     var css = "";
@@ -72,13 +71,7 @@
     var result = passFunction();
     if (typeof(result) === 'undefined') {
       myTitle.push(title);
-      var checkExist = setInterval(function() {
-        clearInterval(checkExist);
-        for (var i=0; i<myResult.length;i++){
-          document.getElementById("test"+myTest[i]).innerHTML = output(myTitle[i], myResult[i]);
-        }
-        document.getElementById('testResults').innerHTML = "Pass = " + pass + " Fail = " + fail;
-      }, 100);
+      setTimeout(delayedAnswer, 500,tests);
     } else {
       document.write(output(title, result));
     }
@@ -86,6 +79,12 @@
 
   function initiate(){
     document.write("<div id='testResults'>Pass = 0 Fail = 0</div>");
+  }
+
+  function delayedAnswer(number){
+    i = myTest.indexOf(number)
+    document.getElementById("test"+myTest[i]).innerHTML = output(myTitle[i], myResult[i]);
+    document.getElementById('testResults').innerHTML = "Pass = " + pass + " Fail = " + fail;
   }
 
   function describe (title, passFunction) {
@@ -107,8 +106,9 @@
   exports.assert.LessThan = LessThan;
   exports.assert.Contains = Contains;
   exports.assert.HasContent = HasContent;
+  exports.assert.HasElement = HasElement;
 
-  exports.Click = Click;
+
   exports.it = it;
   exports.describe = describe;
 

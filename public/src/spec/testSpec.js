@@ -40,10 +40,10 @@ describe("Test suite 2", function() {
   });
 
   it('clicks button', function(){
-    return Click("test.htm", "BUTTON", "NO!!");
+    return assert.HasElement("test.htm", "BUTTON", "NO!!");
   });
 
   it('clicks button', function(){
-    return Click("test.htm", "submit", "NO!!");
+    return assert.HasElement("test.htm", "submit", "NO!!");
   });
 });
