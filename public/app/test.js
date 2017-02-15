@@ -1,5 +1,5 @@
 function returnTrue(){
-  return 1
+  return "HELLO"
 }
 
 function greaterThan() {

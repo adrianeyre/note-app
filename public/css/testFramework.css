@@ -2,11 +2,11 @@ body {
   font-family: Sans-serif;
 }
 
-#correct {
+.correct {
   color: green;
 }
 
-#incorrect {
+.incorrect {
   color: red;
 }
 
