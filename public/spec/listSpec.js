@@ -5,6 +5,6 @@ describe("List", function() {
     var list = new List;
     list.createNote("message");
     var message = list.notes[0].content;
-    return assert.Equals(message, "message");
+    expect(message).toEqual("message");
   });
 })

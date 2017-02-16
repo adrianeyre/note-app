@@ -2,15 +2,21 @@ body {
   font-family: Sans-serif;
 }
 
-#correct {
+.true {
   color: green;
+  line-height: 1.5;
 }
 
-#incorrect {
+.false {
   color: red;
+  line-height: 1.5;
 }
 
-#testResults{
+.results {
   font-size: 20px;
   font-weight: bold;
+}
+
+#test-frame {
+  display: none;
 }

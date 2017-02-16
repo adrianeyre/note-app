@@ -1,135 +1,108 @@
+(function(exports) {
+    var pass = 0;
+    var fail = 0;
+    var tests = 0;
+    var testTitles = [];
+    var befores = {};
+    var assert = {};
+    var firstArgs;
+    var response;
 
-(function(exports){
-  var pass = 0;
-  var fail = 0;
-  var tests = 0;
-  var myResult = [];
-  var myTest = [];
-  var myTitle = [];
-  var itFunctions = [];
-  var befores = {};
-
-  function Equals(passFunction, result, answer="expected " + passFunction + " to equal " + result) {
-    if (passFunction===result){return true;}else{return answer;}
-  }
-
-  function NotEquals(passFunction, result, answer="expected " + passFunction + " not to equal " + result) {
-    if (passFunction!==result){return true;}else{return answer;}
-  }
-
-  function GreaterThan(passFunction, result, answer="expected " + passFunction + " to be greater than " + result) {
-    if (passFunction > result){return true;}else{return answer;}
-  }
-
-  function LessThan(passFunction, result, answer="expected " + passFunction + " to be less than " + result) {
-    if (passFunction < result){return true;}else{return answer;}
-  }
-
-  function Contains(passFunction, result, answer="expected " + passFunction + " to contain " + result) {
-    if (passFunction.includes(result)){return true;}else{return answer;}
-  }
-
-  function createFrame(website){
-    document.write("<div id='test"+tests+"'>&nbsp&nbsp&nbsp&nbspWaiting Results!"+(tests)+"</div>");
-    document.write("<iframe id='iframe"+tests+"' height='0' width='0' src=spec/" + website + "></iframe>");
-  }
-
-  function HasContent(website, result, answer = "expected website to contain: "+result) {
-    createFrame(website);
-    myTest.push(tests);
-    document.getElementById('iframe'+tests).onload = function(targeter) {
-      var target = targeter.currentTarget;
-      var content = target.contentWindow.document.body.innerHTML;
-      if (content.includes(result)) {myResult.push(true);} else {myResult.push(answer);}
-      return;
-    };
-  }
-
-  function HasElement(website, element, answer = "expected click on button: "+element){
-    createFrame(website);
-    myTest.push(tests);
-    document.getElementById('iframe'+tests).onload = function(targeter){
-      var target = targeter.currentTarget;
-      var elementCheck = target.contentWindow.document.getElementById(element);
-      if (elementCheck !== null) {
-        myResult.push(true);
-      } else {
-        myResult.push(answer);
-      }
-      return;
-    };
-  }
-
-  function output (title, result) {
-    var css = "";
-    if (result!==true){css="in"; fail++;}else{pass++;}
-    var output = "<div id='"+css+"correct'>&nbsp&nbsp&nbsp&nbsp"+title+": "+result+"</div>";
-    return output;
-  }
-
-  function it(title, passFunction){
-    beforeEachCaller();
-    tests++;
-    var result = passFunction();
-    if (typeof(result) === 'undefined') {
-      myTitle.push(title);
-      setTimeout(delayedAnswer, 500,tests);
-    } else {
-      document.write(output(title, result));
+    function expect(firstArg) {
+        firstArgs = firstArg;
+        return assert;
     }
-  }
 
-  function initiate(){
-    document.write("<div id='testResults'>Pass = 0 Fail = 0</div>");
-  }
+    function toEqual(secondArg) {
+        var outStr = "expected " + firstArgs + " to be equal to " + secondArg
+        var result = firstArgs === secondArg;
+        output(result, outStr);
+    }
 
-  function delayedAnswer(number){
-    var i = myTest.indexOf(number);
-    document.getElementById("test"+myTest[i]).innerHTML = output(myTitle[i], myResult[i]);
-    document.getElementById('testResults').innerHTML = "Pass = " + pass + " Fail = " + fail;
-  }
+    function toNotEqual(secondArg) {
+        var outStr = "expected " + firstArgs + " not to be equal to " + secondArg;
+        var result = firstArgs !== secondArg
+        output(result, outStr);
+    }
 
-  function describe (title, passFunction) {
-    clearBefores();
-    document.write("<b>"+title+"</b>");
-    passFunction();
-    displayResult();
-  }
+    function toBeGreaterThan(secondArg) {
+        var outStr = "expected " + firstArgs + " to be greater than " + secondArg;
+        var result = firstArgs > secondArg
+        output(result, outStr);
+    }
 
-  function displayResult(){
-    document.write("<script>document.getElementById('testResults').innerHTML = 'Pass = "+ pass +" Fail = "+ fail +"'</script>");
-  }
+    function toBeLessThan(secondArg) {
+        var outStr = "expected " + firstArgs + " to be less than " + secondArg;
+        var result = firstArgs < secondArg
+        output(result, outStr);
+    }
 
-  function beforeEach(beforeEachFunction) {
-      befores = beforeEachFunction;
-  }
+    function toContain(secondArg) {
+        var outStr = "expected " + firstArgs + " to contain " + secondArg;
+        var result = firstArgs.includes(secondArg)
+        output(result, outStr);
+    }
 
-  function beforeEachCaller() {
-      if(typeof(befores) === "function") {
-          return befores();
-      }
-  }
+    function output(result, outStr) {
+        result ? pass++ : fail++;
+        var index = (tests - 1);
+        var el = document.getElementById("tests");
+        var elChild = document.createElement('div');
+        elChild.innerHTML = testTitles[index] + ": " + outStr;
+        el.appendChild(elChild);
+        elChild.classList.add(result)
+        document.getElementById('title').innerHTML = "Pass = " + pass + " Fail = " + fail;
+    }
 
-  function clearBefores() {
-      befores = {};
-  }
+    function it(title, passFunction) {
+        beforeEachCaller();
+        tests++;
+        testTitles.push(title);
+        passFunction();
+    }
 
-  initiate();
+    function initiate() {
+        document.getElementById("title").innerHTML = "Pass = 0 Fail = 0";
+    }
 
-  exports.assert = {};
-  exports.assert.Equals = Equals;
-  exports.assert.NotEquals = NotEquals;
-  exports.assert.GreaterThan = GreaterThan;
-  exports.assert.LessThan = LessThan;
-  exports.assert.Contains = Contains;
-  exports.assert.HasContent = HasContent;
-  exports.assert.HasElement = HasElement;
+    function describe(title, passFunction) {
+        var el = document.getElementById("tests");
+        var elChild = document.createElement('h2');
+        elChild.innerHTML = title;
+        el.appendChild(elChild);
+        clearBefores();
+        passFunction();
+    }
 
-  exports.beforeEach = beforeEach;
-  exports.beforeEachCaller = beforeEachCaller;
-  exports.clearBefores = clearBefores;
+    function beforeEach(beforeEachFunction) {
+        befores = beforeEachFunction;
+    }
 
-  exports.it = it;
-  exports.describe = describe;
+    function beforeEachCaller() {
+        if (typeof(befores) === "function") {
+            return befores();
+        }
+    }
+
+    function clearBefores() {
+        befores = {};
+    }
+
+    initiate();
+
+    exports.expect = expect;
+
+    assert.toEqual = toEqual;
+    assert.toNotEqual = toNotEqual;
+    assert.toBeGreaterThan = toBeGreaterThan;
+    assert.toBeLessThan = toBeLessThan;
+    assert.toContain = toContain;
+
+    exports.beforeEach = beforeEach;
+    exports.beforeEachCaller = beforeEachCaller;
+    exports.clearBefores = clearBefores;
+
+    exports.it = it;
+    exports.describe = describe;
 
 })(this);
