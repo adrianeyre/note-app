@@ -2,106 +2,75 @@
     var pass = 0;
     var fail = 0;
     var tests = 0;
-    var myResult = [];
-    var myTest = [];
-    var myTitle = [];
-    var itFunctions = [];
+    var testTitles = [];
     var befores = {};
     var assert = {};
-    var actuals;
+    var firstArgs;
     var response;
 
-    function expect(actual) {
-        actuals = actual;
+    function expect(firstArg) {
+        firstArgs = firstArg;
         return assert;
     }
 
-    function toEqual(desiredResult) {
-        var outputString = "expected " + actuals + " to be equal to " + desiredResult
-        output(actuals, desiredResult, actuals === desiredResult, outputString);
+    function toEqual(secondArg) {
+        var outStr = "expected " + firstArgs + " to be equal to " + secondArg
+        var result = firstArgs === secondArg;
+        output(result, outStr);
     }
 
-    function toNotEqual(desiredResult) {
-        var outputString = "expected " + actuals + " not to be equal to " + desiredResult;
-        output(actuals, desiredResult, actuals !== desiredResult, outputString);
+    function toNotEqual(secondArg) {
+        var outStr = "expected " + firstArgs + " not to be equal to " + secondArg;
+        var result = firstArgs !== secondArg
+        output(result, outStr);
     }
 
-    function toBeGreaterThan(desiredResult) {
-        var outputString = "expected " + actuals + " to be greater than " + desiredResult;
-        output(actuals, desiredResult, actuals > desiredResult, outputString);
+    function toBeGreaterThan(secondArg) {
+        var outStr = "expected " + firstArgs + " to be greater than " + secondArg;
+        var result = firstArgs > secondArg
+        output(result, outStr);
     }
 
-    function toBeLessThan(desiredResult) {
-        var outputString = "expected " + actuals + " to be less than " + desiredResult;
-        output(actuals, desiredResult, actuals < desiredResult, outputString);
+    function toBeLessThan(secondArg) {
+        var outStr = "expected " + firstArgs + " to be less than " + secondArg;
+        var result = firstArgs < secondArg
+        output(result, outStr);
     }
 
-    function toContain(desiredResult) {
-        var outputString = "expected " + actuals + " to contain " + desiredResult;
-        output(actuals, desiredResult, actuals.includes(desiredResult), outputString);
+    function toContain(secondArg) {
+        var outStr = "expected " + firstArgs + " to contain " + secondArg;
+        var result = firstArgs.includes(secondArg)
+        output(result, outStr);
     }
 
-    function toHaveContent(desiredResult) {
-        var webpage = actuals;
-        loadPage(webpage);
-        var outputString = "expected " + actuals + " to contain " + desiredResult;
-        var result = setTimeout(checkContent, 100, desiredResult)
-        setTimeout(function(){
-            var result = checkContent(response, desiredResult);
-            output(actuals, desiredResult, result, outputString)
-        }, 200);
-    }
-
-    function loadPage(webpage) {
-        var xhr= new XMLHttpRequest();
-        xhr.open('GET', webpage, true);
-        xhr.onreadystatechange= function() {
-            if (this.readyState!==4) return;
-            if (this.status!==200) return;
-            response = this.responseText;
-        };
-        xhr.send();
-    }
-
-    function checkContent(pageContent, desiredResult) {
-        return pageContent.includes(desiredResult);
-    }
-
-    function toHaveElement(desiredResult) {
-        toHaveContent(desiredResult)
-    }
-
-    function output(actualValue, desiredResult, result, outputString) {
-        var divClass = "";
-        if(result === true) {
-            pass++
-        } else {
-            divClass = "in";
-            fail++;
-        }
+    function output(result, outStr) {
+        result ? pass++ : fail++;
+        var index = (tests - 1);
         var el = document.getElementById("tests");
         var elChild = document.createElement('div');
-        elChild.innerHTML = myTitle[tests-1] + ": " + outputString;;
+        elChild.innerHTML = testTitles[index] + ": " + outStr;
         el.appendChild(elChild);
-        elChild.classList.add(divClass + "correct")
-        document.getElementById('test-results').innerHTML = "Pass = " + pass + " Fail = " + fail;
+        elChild.classList.add(result)
+        document.getElementById('title').innerHTML = "Pass = " + pass + " Fail = " + fail;
     }
 
     function it(title, passFunction) {
         beforeEachCaller();
         tests++;
-        myTitle.push(title);
-        var result = passFunction();
+        testTitles.push(title);
+        passFunction();
     }
 
     function initiate() {
-        document.write("<div id='test-results'>Pass = 0 Fail = 0</div>");
-        document.write("<div id=tests></div>");
+        document.getElementById("title").innerHTML = "Pass = 0 Fail = 0";
     }
 
     function describe(title, passFunction) {
+        var el = document.getElementById("tests");
+        var elChild = document.createElement('h2');
+        elChild.innerHTML = title;
+        el.appendChild(elChild);
         clearBefores();
-        document.write("<b>" + title + "</b>");
         passFunction();
     }
 
@@ -128,8 +97,6 @@
     assert.toBeGreaterThan = toBeGreaterThan;
     assert.toBeLessThan = toBeLessThan;
     assert.toContain = toContain;
-    assert.toHaveContent = toHaveContent;
-    assert.toHaveElement = toHaveElement;
 
     exports.beforeEach = beforeEach;
     exports.beforeEachCaller = beforeEachCaller;

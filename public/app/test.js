@@ -7,5 +7,5 @@ function greaterThan() {
 }
 
 function array() {
-  return [1,2];
+  return ["1,2"];
 }

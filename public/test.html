@@ -5,20 +5,23 @@
     <link rel="stylesheet" href="css/testFramework.css">
 
     <!--  Test Framework -->
-    <script src="app/testFramework.js"></script>
-    <script src="app/testFrameworkHelpers.js"></script>
+    <script src="app/testFramework.js" defer></script>
+    <script src="app/testFrameworkHelpers.js" defer></script>
 
     <!-- Source files -->
-    <script src="app/test.js"></script>
-    <script src="src/note.js"></script>
-    <script src="src/list.js"></script>
+    <script src="app/test.js" defer></script>
+    <script src="src/note.js" defer></script>
+    <script src="src/list.js" defer></script>
 
     <!-- Spec files -->
-    <script src="spec/testSpec.js"></script>
-    <script src="spec/noteSpec.js"></script>
-    <script src="spec/listSpec.js"></script>
+    <script src="spec/testSpec.js" defer></script>
+    <script src="spec/noteSpec.js" defer></script>
+    <script src="spec/listSpec.js" defer></script>
   </head>
   <body>
+    <div id="test-results" class="results"></div>
+    <h1 id="title"></h1>
+    <div id="tests"></div>
     <div id="test-frame"></div>
   </body>
 </html>
