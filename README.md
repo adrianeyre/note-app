@@ -31,6 +31,7 @@ We were asked to create a testing framework in Javascript from scratch. Once the
 * HTML
 * CSS
 * [Waffle] (https://waffle.io/treborb/notes-app)
+* [Original Repo] (https://github.com/treborb/notes-app)
 
 ## <a name="Stories">User Stories</a>
 ```
@@ -59,7 +60,7 @@ $ open -a safari localhost:8080
 ```
 
 ### Note app screenshot
-[![ScreenShot1](https://raw.githubusercontent.com/treborb/notes-app/master/images/screenshot1.png)](https://raw.githubusercontent.com/treborb/notes-app/master/images/screenshot1.png "Screen Shot 1")
+[![ScreenShot1](https://raw.githubusercontent.com/adrianeyre/notes-app/master/images/screenshot1.png)](https://raw.githubusercontent.com/adrianeyre/notes-app/master/images/screenshot1.png "Screen Shot 1")
 
 ## <a name="Framework">Testing Framework</a>
 the repo includes a bespoke testing framework written from scratch.
@@ -67,7 +68,7 @@ the repo includes a bespoke testing framework written from scratch.
 ### Installation
 To install to any project
 ```
-$ git clone https://github.com/treborb/notes-app
+$ git clone https://github.com/adrianeyre/notes-app
 $ cd notes-app
 $ http-server
 $ open -a safari localhost:8080/test.html
@@ -132,4 +133,4 @@ This will now return ":(" on fail.
 
 ### Test framework output
 
-[![ScreenShot2](https://raw.githubusercontent.com/treborb/notes-app/master/images/screenshot2.png)](https://raw.githubusercontent.com/treborb/notes-app/master/images/screenshot2.png "Screen Shot 2")
+[![ScreenShot2](https://raw.githubusercontent.com/adrianeyre/notes-app/master/images/screenshot2.png)](https://raw.githubusercontent.com/adrianeyre/notes-app/master/images/screenshot2.png "Screen Shot 2")
