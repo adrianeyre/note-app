@@ -52,7 +52,7 @@ So I can see all the information in the note
 To use the notes app and install node http server, follow these instructions:
 
 ```
-$ git clone https://github.com/treborb/notes-app
+$ git clone https://github.com/adrianeyre/notes-app
 $ cd notes-app
 $ npm install http-server -g
 $ http-server
@@ -60,7 +60,7 @@ $ open -a safari localhost:8080
 ```
 
 ### Note app screenshot
-[![ScreenShot1](https://raw.githubusercontent.com/adrianeyre/note-app/master/images/screenshot1.png)](https://raw.githubusercontent.com/adrianeyre/note-app/master/images/screenshot1.png "Screen Shot 1")
+[![ScreenShot1](https://raw.githubusercontent.com/adrianeyre/notes-app/master/images/screenshot1.png)](https://raw.githubusercontent.com/adrianeyre/notes-app/master/images/screenshot1.png "Screen Shot 1")
 
 ## <a name="Framework">Testing Framework</a>
 the repo includes a bespoke testing framework written from scratch.
@@ -133,4 +133,4 @@ This will now return ":(" on fail.
 
 ### Test framework output
 
-[![ScreenShot2](https://raw.githubusercontent.com/adrianeyre/note-app/master/images/screenshot2.png)](https://raw.githubusercontent.com/adrianeyre/note-app/master/images/screenshot2.png "Screen Shot 2")
+[![ScreenShot2](https://raw.githubusercontent.com/adrianeyre/notes-app/master/images/screenshot2.png)](https://raw.githubusercontent.com/adrianeyre/notes-app/master/images/screenshot2.png "Screen Shot 2")
